@@ -6,6 +6,23 @@
     <title>Form Validation Practice</title>
   </head>
   <body>
-    <div id="container"></div>
+    <form id="account-creation-form" novalidate>
+      <label for="full-name">Name: 
+        <input id="full-name" type="text" name="full-name">
+      </label>
+      <label for="email">Email: 
+        <input id="email" type="email" name="email">
+      </label>
+      <label for="postal-code">Postal Code: 
+        <input id="postal-code" type="number" name="postal-code">
+      </label>
+      <label for="password">Password: 
+        <input id="password" type="password" name="password">
+      </label>
+      <label for="repeat-password"> Repeat Password: 
+        <input id="repeat-password" type="password" name="password">
+      </label>
+      <button id="submit-button" type="submit">Submit</button>
+    </form>
   </body>
 </html>

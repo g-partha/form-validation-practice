@@ -1,4 +1,4 @@
-class Validation {
+export class Validation {
   constructor(
     input,
     isRequired,
@@ -27,6 +27,7 @@ class Validation {
     }
   }
   checkPassword() {
+    if(this.isPassword){
     const symbols = ["@", "#", "%", "&"];
     const smallLetters = [
       "a",
@@ -85,39 +86,30 @@ class Validation {
       "Z",
     ];
     const digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-    if (this.isPassword) {
-      const symbolCheck = (function () {
-        symbols.forEach((item) => {
-          if (this.input.value.includes(item)) {
-            return "valid";
-          }
-        });
-        return "invalid";
-      })();
-      const smallLettersCheck = (function () {
-        smallLetters.forEach((item) => {
-          if (this.input.value.includes(item)) {
-            return "valid";
-          }
-        });
-        return "invalid";
-      })();
-      const capitalLettersCheck = (function () {
-        capitalLetters.forEach((item) => {
-          if (this.input.value.includes(item)) {
-            return "valid";
-          }
-        });
-        return "invalid";
-      })();
-      const digitsCheck = (function () {
-        digits.forEach((item) => {
-          if (this.input.value.includes(item)) {
-            return "valid";
-          }
-        });
-        return "invalid";
-      })();
+    let symbolCheck = 'invalid';
+    for(let symbol of symbols){
+      if(this.input.value.includes(symbol)){
+        symbolCheck = 'valid';
+      }
+    }
+    let smallLettersCheck = 'invalid';
+    for(let smallLetter of smallLetters){
+      if(this.input.value.includes(smallLetter)){
+        smallLettersCheck = 'valid';
+      }
+    }
+    let capitalLettersCheck = 'invalid';
+    for(let capitalLetter of capitalLetters){
+      if(this.input.value.includes(capitalLetter)){
+        capitalLettersCheck = 'valid';
+      }
+    }
+    let digitsCheck = 'invalid';
+    for(let digit of digits){
+      if(this.input.value.includes(digit)){
+        digitsCheck = 'valid';
+      }
+    }
       if (
         symbolCheck === "invalid" ||
         smallLettersCheck === "invalid" ||
@@ -129,7 +121,7 @@ class Validation {
       return "valid";
     }
   }
-  checkMinLength() {
+  checkMinLength () {
     if (this.minLength) {
       if (this.input.value.length < this.minLength) {
         return "invalid";
@@ -167,6 +159,23 @@ class Validation {
         return "valid";
       }
       return "invalid";
+    }
+  }
+  validate() {
+    if (
+      this.checkRequired() === "invalid" ||
+      this.checkPassword() === "invalid" ||
+      this.checkMinLength() === "invalid" ||
+      this.checkMaxLength() === "invalid" ||
+      this.checkRegex() === "invalid" ||
+      this.checkStringComparision() === "invalid" ||
+      this.checkArrayInclusion() === "invalid"
+    ) {
+      this.input.className = '';
+      this.input.classList.add("invalid");
+    } else {
+      this.input.className = '';
+      this.input.classList.add("valid");
     }
   }
 }
