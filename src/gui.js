@@ -1,55 +1,8 @@
-import { Validation } from "./validation";
+export const fullNameInput = document.querySelector("#full-name");
+export const emailInput = document.querySelector("#email");
+export const postalCodeInput = document.querySelector("#postal-code");
+export const passwordInput = document.querySelector("#password");
+export const repeatPasswordInput = document.querySelector("#repeat-password");
+export const submitButton = document.querySelector("#submit-button");
 
-const fullNameInput = document.querySelector("#full-name");
-const emailInput = document.querySelector("#email");
-const postalCodeInput = document.querySelector("#postal-code");
-const passwordInput = document.querySelector("#password");
-const repeatPasswordInput = document.querySelector("#repeat-password");
-const submitButton = document.querySelector("#submit-button");
 
-function validateForm() {
-  const fullNameInputValidation = new Validation(
-    fullNameInput,
-    true,
-    false,
-    null,
-    null,
-    null,
-    null,
-    null,
-  );
-  fullNameInputValidation.validate();
-  const passwordInputValidation = new Validation(
-    passwordInput,
-    true,
-    true,
-    8,
-    16,
-    null,
-    null,
-    null,
-  );
-  passwordInputValidation.validate();
-  const repeatPasswordInputValidation = new Validation(
-    repeatPasswordInput,
-    true,
-    false,
-    null,
-    null,
-    null,
-    passwordInput.value,
-    null,
-  );
-  repeatPasswordInputValidation.validate();
-}
-fullNameInput.addEventListener("input", () => {
-  validateForm();
-});
-
-passwordInput.addEventListener("input", () => {
-  validateForm();
-});
-
-repeatPasswordInput.addEventListener("input", () => {
-  validateForm();
-});
